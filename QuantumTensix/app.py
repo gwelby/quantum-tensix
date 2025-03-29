@@ -1248,7 +1248,7 @@ def pattern_network_viz(data):
         
         // Create simulation
         const simulation = d3.forceSimulation(nodes)
-            .force("link", d3.forceLink(links).id(d => d.id).distance(d => 200 * (1 - d.weight)))
+            .force("link", d3.forceLink(links).id(function(d) { return d.id; }).distance(function(d) { return 200 * (1 - d.weight); }))
             .force("charge", d3.forceManyBody().strength(-100))
             .force("center", d3.forceCenter(width / 2, height / 2))
             .force("x", d3.forceX(width / 2).strength(0.1))
@@ -1267,7 +1267,7 @@ def pattern_network_viz(data):
             .data(links)
             .join("line")
             .attr("class", "pattern-link")
-            .attr("stroke-width", d => Math.sqrt(d.weight) * 3);
+            .attr("stroke-width", function(d) { return Math.sqrt(d.weight) * 3; });
         
         // Create nodes
         const node = svg.append("g")
@@ -1275,9 +1275,9 @@ def pattern_network_viz(data):
             .data(nodes)
             .join("circle")
             .attr("class", "pattern-node")
-            .attr("r", d => Math.sqrt(d.size))
-            .attr("fill", d => d.color)
-            .attr("opacity", d => 0.7 + (d.strength * 0.3))
+            .attr("r", function(d) { return Math.sqrt(d.size); })
+            .attr("fill", function(d) { return d.color; })
+            .attr("opacity", function(d) { return 0.7 + (d.strength * 0.3); })
             .call(drag(simulation));
         
         // Add labels
@@ -1288,29 +1288,31 @@ def pattern_network_viz(data):
             .attr("class", "pattern-label")
             .attr("text-anchor", "middle")
             .attr("fill", "black")
-            .text(d => d.label)
-            .attr("dy", d => Math.sqrt(d.size) + 12);
+            .text(function(d) { return d.label; })
+            .attr("dy", function(d) { return Math.sqrt(d.size) + 12; });
         
         // Add tooltips
         node.append("title")
-            .text(d => `${d.label}\\nDimension: ${d.dimension}D\\nStrength: ${d.strength.toFixed(2)}`);
+            .text(function(d) { 
+                return d.label + "\\nDimension: " + d.dimension + "D\\nStrength: " + d.strength.toFixed(2);
+            });
         
         // Update positions
-        simulation.on("tick", () => {{
+        simulation.on("tick", function() {
             link
-                .attr("x1", d => d.source.x)
-                .attr("y1", d => d.source.y)
-                .attr("x2", d => d.target.x)
-                .attr("y2", d => d.target.y);
+                .attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
                 
             node
-                .attr("cx", d => d.x)
-                .attr("cy", d => d.y);
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; });
                 
             label
-                .attr("x", d => d.x)
-                .attr("y", d => d.y);
-        }});
+                .attr("x", function(d) { return d.x; })
+                .attr("y", function(d) { return d.y; });
+        });
         
         // Drag functionality
         function drag(simulation) {{
