@@ -64,6 +64,8 @@ class PhiLLMIntegration:
         print(f"Initializing Phi-LLM integration with model: {model_name}")
         
         # Initialize the phi accelerator
+        if device is not None:
+            device = torch.device(device)
         self.accelerator = GPUPhiAccelerator(device=device)
         self.device = self.accelerator.device
         

@@ -1239,7 +1239,7 @@ def pattern_network_viz(data):
     <div id="pattern-network" style="height: 600px;"></div>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
-    (function() {{
+    (function() {
         const nodes = {json.dumps(nodes)};
         const links = {json.dumps(edges)};
         
@@ -1315,30 +1315,30 @@ def pattern_network_viz(data):
         });
         
         // Drag functionality
-        function drag(simulation) {{
-            function dragstarted(event) {{
+        function drag(simulation) {
+            function dragstarted(event) {
                 if (!event.active) simulation.alphaTarget(0.3).restart();
                 event.subject.fx = event.subject.x;
                 event.subject.fy = event.subject.y;
-            }}
+            }
             
-            function dragged(event) {{
+            function dragged(event) {
                 event.subject.fx = event.x;
                 event.subject.fy = event.y;
-            }}
+            }
             
-            function dragended(event) {{
+            function dragended(event) {
                 if (!event.active) simulation.alphaTarget(0);
                 event.subject.fx = null;
                 event.subject.fy = null;
-            }}
+            }
             
             return d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
                 .on("end", dragended);
-        }}
-    }})();
+        }
+    })();
     </script>
     """
     
