@@ -1,0 +1,34 @@
+{
+  "matrix_multiplication": {
+    "matrix_sizes": [
+      233
+    ],
+    "standard_times": [
+      0.05790066719055176
+    ],
+    "phi_blocked_times": [
+      0.001977682113647461
+    ],
+    "phi_improvements": [
+      -96.58435349779496
+    ],
+    "standard_gflops": [
+      0.4369323399459591
+    ],
+    "phi_blocked_gflops": [
+      12.792083128739723
+    ],
+    "block_sizes": [
+      13
+    ],
+    "avg_improvement": -96.58435349779496
+  },
+  "timestamp": "2025-03-20T19:56:15.369697",
+  "platform": {
+    "python_version": "3.10.12 (main, Feb  4 2025, 14:57:36) [GCC 11.4.0]",
+    "numpy_version": "2.0.2",
+    "os": "posix",
+    "cpu_cores": 20,
+    "numba_available": true
+  }
+}
