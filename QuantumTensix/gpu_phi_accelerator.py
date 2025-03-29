@@ -354,6 +354,7 @@ class PhiDimensionalTensor:
             "phase": phase,
             "frequency": frequency,
             "coherence": 1.0,  # Initial coherence
+            "phi_factor": PHI ** (dimension - 3),  # Phi factor increases with dimension
             "structure": self._calculate_dimensional_structure(dimension)
         }
     

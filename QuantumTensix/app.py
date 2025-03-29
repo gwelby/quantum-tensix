@@ -1235,13 +1235,13 @@ def pattern_network_viz(data):
     """, unsafe_allow_html=True)
     
     # Create HTML with embedded JavaScript for D3 visualization
-    html = f"""
+    html = """
     <div id="pattern-network" style="height: 600px;"></div>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
     (function() {
-        const nodes = {json.dumps(nodes)};
-        const links = {json.dumps(edges)};
+        const nodes = """ + json.dumps(nodes) + """;
+        const links = """ + json.dumps(edges) + """;
         
         const width = document.getElementById('pattern-network').clientWidth;
         const height = 600;
